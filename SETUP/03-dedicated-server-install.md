@@ -44,3 +44,48 @@ boot. Make the natives check part of your post-update ritual.
 Every player needs `-nosteam` in their launch options and "Use Steam
 Relay" unticked, or joins will fail. This applies to every client, not
 just the host.
+## Getting the server files (the part nobody documents)
+
+Every route below requires a legitimate purchase — pick whichever fits
+your setup.
+
+### Route 1: Steam on PC → rsync to phone (recommended)
+
+Install the **Project Zomboid Dedicated Server** from Steam on your PC
+(Library → filter dropdown → Tools). The full server tree lands in:
+
+    steamapps/common/Project Zomboid Dedicated Server/
+
+Then rsync it to the phone — same muscle memory as the mod pipeline:
+
+    rsync -av --progress "/path/to/steamapps/common/Project Zomboid Dedicated Server/" \
+        user@phone-ip:8022:~/pzserver/
+
+(Termux sshd listens on 8022, not 22.) Keeps the ~7 GB download off
+the phone and reuses your existing workshop-master workflow.
+
+### Route 2: DepotDownloader inside Termux (one-machine option)
+
+SteamCMD does NOT work on Android — the kernel lacks
+`set_robust_list`, so it aborts with `futex robust_list not
+initialized by pthreads` even under emulation. DepotDownloader is the
+working alternative: log in with your Steam credentials, it pulls
+the server depot (~7 GB) directly to the phone, Steam Guard prompts
+on-device. Credit for discovering and documenting this route:
+[nikiiiii-ii/zomboid-server-native-arm64](https://github.com/nikiiiii-ii/zomboid-server-native-arm64)
+— also worth reading for its glibc-vs-bionic notes and the finding
+that the official game depot ships ARM64 natives.
+
+### Which route?
+
+PC→rsync keeps heavy lifting off the phone and fits the mod pipeline;
+DepotDownloader is the no-second-computer option. Both assume you own
+the game — no route here distributes files.
+
+### JDK version note (verify yours)
+
+Newer PZ builds are compiled for newer Java (B42.20.3 reportedly
+needs class file version 69 = Java 25; older builds ran on 17). If
+the server dies at startup with `UnsupportedClassVersionError`, your
+JDK is too old for your build — check `java -version` against the
+build's requirements before assuming anything Android-related.
