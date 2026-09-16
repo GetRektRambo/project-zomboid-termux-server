@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# pm-debloat.sh TEMPLATE — reversible package purge via adb (uid 2000).
+# DRY RUN by default. NEVER trusts pm's output — manifest diff is truth.
+set -euo pipefail
+MODE="${1:---dry}"     # pass -run to execute
+PKG_BEFORE="$HOME/hacking/reports/pkgs-before.txt"
+PKG_AFTER="$HOME/hacking/reports/pkgs-after.txt"
+
+# ONE package per call — multi-arg pm is a partial-failure ghost!
+KILL_LIST=(
+  com.android.dialer
+  com.android.deskclock
+  # ... add your own; verify presence first, never blind-fire
+)
+
+adb shell pm list packages --user 0 | LC_ALL=C sort > "$PKG_BEFORE"
+
+for pkg in "${KILL_LIST[@]}"; do
+  if [ "$MODE" = "-run" ]; then
+    adb shell pm uninstall -k --user 0 "$pkg" || true   # never trust printed status
+  else
+    echo "[dry] would kill $pkg"
+  fi
+done
+
+if [ "$MODE" = "-run" ]; then
+  adb shell pm list packages --user 0 | LC_ALL=C sort > "$PKG_AFTER"
+  echo "--- manifest diff (authoritative receipt) ---"
+  diff "$PKG_BEFORE" "$PKG_AFTER" || true
+fi
+echo "Restore any package: adb shell cmd package install-existing <pkg>"

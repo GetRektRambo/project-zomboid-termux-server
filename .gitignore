@@ -1,0 +1,7 @@
+*.log
+*.tmp
+.DS_Store
+secrets.env
+*.conf.local
+pkgs-before.txt
+pkgs-after.txt

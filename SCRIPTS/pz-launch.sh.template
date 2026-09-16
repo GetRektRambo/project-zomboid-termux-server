@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# pz-launch.sh TEMPLATE — single-door launcher. Adapt paths for your install.
+set -euo pipefail
+
+PZ_HOME="$HOME/pzserver"
+NATIVES="$PZ_HOME/natives-arm64-test"   # aarch64 rebuilds — see SETUP/03
+PZ_HEAP="${PZ_HEAP:-3072m}"             # see SETUP/02 for sizing gates
+
+# IMPORTANT: check your server's actual jar / main class for your build
+exec java \
+  -Xms"$PZ_HEAP" -Xmx"$PZ_HEAP" -XX:+UseG1GC \
+  -Dzomboid.steam=0 \
+  -Djava.net.preferIPv4Stack=true \
+  -Djava.library.path="$NATIVES" \
+  -cp "$PZ_HOME"/* \
+  zombie/gameStates/MainScreenState 2>&1

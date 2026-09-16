@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# pz-watchdog.sh TEMPLATE — process-death-triggered, marker-honoring.
+RUN_DIR="$HOME/hacking/run"
+MARKER_STOP="$RUN_DIR/pz_manual_stop"
+INTERVAL=300
+
+while true; do
+  if [ -f "$MARKER_STOP" ]; then
+    # deliberate stop — stand down, clear marker and relaunch when ready
+    :
+  elif ! pgrep -f 'zomboid' >/dev/null; then
+    # PROCESS DEATH is the sole restart trigger (dog-war lesson:
+    # probes can be silently broken against your build — warn-only!)
+    echo "$(date -Is) server process dead — restarting" >&2
+    bash "$HOME/hacking/scripts/pz-launch.sh" &
+  fi
+  sleep "$INTERVAL"
+done
