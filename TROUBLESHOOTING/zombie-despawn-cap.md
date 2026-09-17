@@ -11,8 +11,8 @@ and neither does anything in the Android survival stack.
 ## The risk of raising it
 
 Community-documented: raising `ZombiesCountBeforeDelete` carries real
-risk of disk write errors and world-save corruption. We deliberately
-left ours at default — losing a world is worse than losing zombies.
+risk of disk write errors and world-save corruption. I deliberately
+left it at default — losing a world is worse than losing zombies.
 
 ## Options, ranked conservative-first
 
