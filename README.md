@@ -42,7 +42,7 @@ the cap and the trade-offs, not a bypass. See
 
 ## Time Investment (Honest Numbers)
 
-| Phase | Following this guide | Trial & error (what it took us) |
+| Phase | Following this guide | Trial & error (what it took me) |
 |-------|---------------------|--------------------------------|
 | Research & dead ends | 0 h | 40–80+ h |
 | Termux + JDK + natives | ~2 h | 5–15 h |
