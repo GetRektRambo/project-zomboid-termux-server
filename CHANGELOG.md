@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.1.2 — 2026-09-16
+- README: expanded Known Limitations from one item to six
+  - perishable Android survival stack (OTA resets)
+  - hardware ceiling (RAM/heap) as fleet-server constraint
+  - manual-start doctrine as friend-facing behavior
+  - single point of failure (no root, watchdog limits)
+  - build-locked verification (42.20.4, updater restores x86 natives)
+
 ## v1.1.1 — 2026-09-16
 - SETUP/05: added "Friends joining your server" — Tailscale tailnet
   route, client modpack delivery, RakNet-wedge reminder on failed joins
