@@ -4,7 +4,7 @@
 
     checksum-File doesn't exist on the client: <path>
 
-## What we eliminated first (with receipts)
+## What I eliminated first (with receipts)
 
 Tree md5 identical both sides (LC_ALL=C sort, or the diff lies), no
 case mismatches, file exists at the demanded path, fresh db, fresh

@@ -1,7 +1,7 @@
 # Step 5 — Getting Friends Onto Your Private Server
 
 A server hosting one player is a diary. This is the actual onboarding
-procedure we hand to new players — replace the placeholders with your
+procedure I hand to new players — replace the placeholders with your
 own values before sending it.
 
 ## Why a tailnet (Tailscale)

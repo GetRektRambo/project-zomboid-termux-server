@@ -84,7 +84,7 @@ for everyone.
 
 This guide represents well over 100 hours of debugging, four wars, and a
 dozen "ghost operations" (things that lied about what they did). Every
-receipt in here exists because something lied to us first.
+receipt in here exists because something lied to me first.
 
 ## Quick Start
 

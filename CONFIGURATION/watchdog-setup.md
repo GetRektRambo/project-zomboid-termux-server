@@ -23,7 +23,7 @@ the marker for you — remove it after starting:
 A monitor that never passes on a healthy system converts uptime into
 scheduled downtime. Our RakNet probe went deaf on B42 while clients
 played fine — every fail-limit strike restarted a POPULATED server,
-manufacturing the very disconnect pattern we were hunting.
+manufacturing the very disconnect pattern I was hunting.
 
 **Resolution:** the probe runs WARN-ONLY. **Process death is the sole
 restart trigger.** Validate probes against known-good state after every

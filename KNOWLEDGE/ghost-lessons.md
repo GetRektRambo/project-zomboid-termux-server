@@ -1,7 +1,7 @@
 # Ghost Lessons — Receipt Discipline
 
 Operations that lied about what they did. Each cost real debugging time;
-none will cost yours. Every line in this table is a scar we earned so
+none will cost yours. Every line in this table is a scar I earned so
 your build wouldn't bleed the same way.
 
 | Ghost | Lie | Truth | Receipt |
